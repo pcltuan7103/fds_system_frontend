@@ -11,5 +11,5 @@ import FeedbackCampaign from "./FeedbackCampaign";
 import ApprovedPost from "./ApprovedPost";
 import PersonalApprovedPost from "./PersonalApprovedPost";
 import PersonalRejectedPost from "./PersonalRejectedPost";
-
-export { OTPInput, Subscriber, Post, SlideToggle, RenderIf, Loading, CarouselLanding, CampaignCarousel, PostImageGallery, FeedbackCampaign, ApprovedPost, PersonalApprovedPost, PersonalRejectedPost };
+import CrispChat from "./Crisp";
+export { OTPInput, Subscriber, Post, SlideToggle, RenderIf, Loading, CarouselLanding, CampaignCarousel, PostImageGallery, FeedbackCampaign, ApprovedPost, PersonalApprovedPost, PersonalRejectedPost, CrispChat };
