@@ -281,6 +281,7 @@ const HeaderLanding: FC<LandingHeaderProps> = ({ isLogin }) => {
                         <>
                             <Link to={routes.login}>Đăng nhập</Link>
                             <Link to={routes.register}>Đăng Ký</Link>
+                            <Link to={routes.admin_login}>Trang quản lý</Link>
                         </>
                     )}
                     {isLogin && (
