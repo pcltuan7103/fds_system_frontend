@@ -1,0 +1,59 @@
+#register {
+    #register-section {
+        .rs-container {
+            display: flex;
+
+            .rscc1 {
+                background-image: url("@/assets/images/bg-left.png");
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: cover;
+                min-height: 100vh;
+            }
+
+            .rscc2 {
+                display: flex;
+                align-items: center;
+
+                .rscc2-main {
+                    width: 70%;
+                    margin: 0 auto;
+
+                    .form {
+                        display: flex;
+                        flex-direction: column;
+                    }
+
+                    h1 {
+                        font-size: 40px;
+                        font-weight: 800;
+                        color: var(--main-color);
+                        margin-bottom: 20px;
+                    }
+
+                    .sc-btn {
+                        width: 200px;
+                        font-size: 17px;
+                        padding: 12px;
+                        margin: 0 auto;
+                        margin-top: 20px;
+                        margin-bottom: 30px;
+                    }
+
+                    p {
+                        text-align: center;
+                        color: var(--main-black);
+                        font-size: 17px;
+                        font-weight: 500;
+
+                        span {
+                            color: #F54A00;
+                            font-weight: 800;
+                            cursor: pointer;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

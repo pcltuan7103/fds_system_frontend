@@ -1,0 +1,73 @@
+#organization-donor-modal {
+    padding: 0 30px;
+    width: 1200px;
+
+    .odm-container {
+        text-align: center;
+
+        h1 {
+            font-size: 30px;
+            font-weight: 800;
+            color: #272d4e;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            text-align: start;
+            margin-bottom: 10px;
+            font-size: 20px;
+            font-weight: 500;
+        }
+
+        h3 {
+            text-align: start;
+            margin-bottom: 5px;
+            font-size: 15px;
+            font-weight: 800;
+        }
+
+        ul {
+            li {
+                text-align: start;
+                margin: 5px 0;
+            }
+        }
+
+        .form {
+            .form-field {
+                text-align: start;
+            }
+
+            .odm-form-r1,
+            .odm-form-r2 {
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                gap: 20px;
+            }
+        }
+
+        .group-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .sc-btn,
+        .pr-btn {
+            width: 200px;
+            margin: 20px 0 0;
+            padding: 10px 30px;
+        }
+
+        .pr-btn {
+            color: var(--white-color);
+            font-size: 14px;
+            font-weight: 800;
+            border: none;
+            border-radius: var(--border-radius-12);
+            cursor: pointer;
+        }
+    }
+}

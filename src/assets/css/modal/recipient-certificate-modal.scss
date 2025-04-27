@@ -1,0 +1,55 @@
+#recipient-certificate-modal {
+    padding: 0 30px;
+    width: 1200px;
+
+    .rcm-container {
+        text-align: center;
+
+        h1 {
+            font-size: 30px;
+            font-weight: 800;
+            color: #272d4e;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            text-align: start;
+            margin-bottom: 10px;
+            font-size: 20px;
+            font-weight: 500;
+        }
+
+        h3 {
+            text-align: start;
+            margin-bottom: 5px;
+            font-size: 15px;
+            font-weight: 800;
+        }
+
+        ul {
+            li {
+                text-align: start;
+                margin: 5px 0;
+            }
+        }
+
+        .form {
+            .form-field {
+                text-align: start;
+            }
+
+            .rcm-form-r1,
+            .rcm-form-r2 {
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                gap: 20px;
+            }
+        }
+
+        .sc-btn {
+            margin-top: 30px;
+            padding: 10px 30px;
+        }
+    }
+}

@@ -1,0 +1,61 @@
+#create-campaign-modal {
+    padding: 0 30px;
+    width: 1200px;
+
+    .ccm-container {
+        text-align: center;
+
+        h1 {
+            font-size: 30px;
+            font-weight: 800;
+            color: var(--main-color);
+            margin-bottom: 40px;
+        }
+
+        h3 {
+            text-align: start;
+            font-size: 20px;
+            font-weight: 700;
+            color: #272d4e;
+            margin-bottom: 10px;
+        }
+
+        .form {
+            width: 100%;
+
+            .form-field {
+                text-align: start;
+            }
+
+            .ccm-form-r1, .ccm-form-r2, .ccm-form-r3 {
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                gap: 20px;
+            }
+        }
+
+        .group-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .sc-btn,
+        .pr-btn {
+            width: 200px;
+            margin: 20px 0 0;
+            padding: 10px 30px;
+        }
+
+        .pr-btn {
+            color: var(--white-color);
+            font-size: 14px;
+            font-weight: 800;
+            border: none;
+            border-radius: var(--border-radius-12);
+            cursor: pointer;
+        }
+    }
+}

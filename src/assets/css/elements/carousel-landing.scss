@@ -1,0 +1,53 @@
+.carousel-container {
+    width: 100%;
+
+    .carousel-item {
+        position: relative;
+
+        .carousel-caption {
+            position: absolute;
+            left: 50%;
+            bottom: 10%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.4);
+            /* giảm opacity nhẹ hơn để hình nền bớt tối */
+            padding: 12px 24px;
+            border-radius: var(--border-radius-16);
+            color: #ff9d2e;
+            /* Màu chữ sáng, dịu hơn màu trắng tinh */
+            text-align: center;
+            font-size: 45px;
+            font-weight: 600;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+            /* tăng độ nổi cho chữ trên nền phức tạp */
+        }
+    }
+
+    img {
+        width: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
+
+    .pagination-lists {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        margin-top: 32px;
+
+        .pagination-item {
+            width: 12px;
+            height: 12px;
+            background: var(--light-orange);
+            border-radius: var(--border-radius-circle);
+            cursor: pointer;
+        }
+
+        .pagination-item-active {
+            width: 32px;
+            background: var(--main-color);
+            border-radius: var(--border-radius-16);
+        }
+    }
+}

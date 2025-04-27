@@ -1,0 +1,114 @@
+@use "./landing.scss";
+
+@use "./base-project.scss";
+
+@use "./login.scss";
+@use "./manage-login.scss";
+
+@use "./register.scss";
+
+@use "./otp-auth.scss";
+
+@use "./forgot-pass.scss";
+
+@use "./new-pass.scss";
+
+@use "./header/header-landing.scss";
+
+@use "./footer/footer-landing.scss";
+
+@use "./form.scss";
+
+@use "./notification.scss";
+
+@use "./paginator.scss";
+
+@use "admin/header/admin-header.scss";
+@use "admin/sidebar/admin-sidebar.scss";
+@use "admin/admin.scss";
+@use "admin/table.scss";
+@use "admin/admin-dashboard.scss";
+@use "admin/staff/list-staff.scss";
+@use "admin/staff/add-staff.scss";
+@use "admin/staff/detail-staff.scss";
+@use "admin/campaign/admin-list-campaign.scss";
+@use "admin/campaign/admin-detail-campaign.scss";
+@use "admin/campaign/staff/list-campaign-staff.scss";
+@use "admin/campaign/staff/detail-campaign-staff.scss";
+@use "admin/campaign/donor/list-campaign-donor.scss";
+@use "admin/campaign/donor/detail-campaign-donor.scss";
+@use "admin/news/admin-list-news.scss";
+@use "admin/news/admin-detail-news.scss";
+@use "admin/post/forum-post.scss";
+@use "admin/post/user-post.scss";
+@use "admin/post/staff-post.scss";
+
+@use "./card/campaign-card.scss";
+@use "./card/hightlight-card.scss";
+@use "./card/event-card.scss";
+@use "./card/supporter-card.scss";
+@use "./card/news-card.scss";
+
+@use "./elements/otp.scss";
+@use "./elements/subscriber.scss";
+@use "./elements/post.scss";
+@use "./elements/slide-toggle.scss";
+@use "./elements/button.scss";
+@use "./elements/loading.scss";
+@use "./elements/carousel-landing.scss";
+@use "./elements/carousel-campaign.scss";
+@use "./elements/post-image-gallery.scss";
+
+@use "./campaign/list-campaigns.scss";
+@use "./campaign/detail-campaign.scss";
+
+@use "./supporter/list-supporter.scss";
+@use "./supporter/detail-supporter.scss";
+
+@use "./news/list-news.scss";
+@use "./news/detail-news.scss";
+
+@use "./user/user-profile.scss";
+@use "./user/user-change-pass.scss";
+@use "./user/user-new-pass.scss";
+@use "./user/user-submit-certificate.scss";
+@use "./user/user-personal.scss";
+@use "./user/user-detail-campaign.scss";
+@use "./user/user-detail-certificate.scss";
+
+@use "./post/post-forum.scss";
+
+@use "./staff/staff.scss";
+@use "./staff/header/staff-header.scss";
+@use "./staff/sidebar/staff-sidebar.scss";
+@use "./staff/staff-dashboard.scss";
+@use "./staff/user/staff-list-user.scss";
+@use "./staff/user/staff-detail-user.scss";
+@use "./staff/campaign/staff/staff-list-campaign-staff.scss";
+@use "./staff/campaign/staff/staff-detail-campaign-staff.scss";
+@use "./staff/campaign/staff/staff-add-campaign-staff.scss";
+@use "./staff/campaign/user/staff-list-campaign-user.scss";
+@use "./staff/campaign/user/staff-detail-campaign-user.scss";
+@use "./staff/news/staff-list-news.scss";
+@use "./staff/news/staff-detail-news.scss";
+@use "./staff/news/staff-add-news.scss";
+@use "./staff/post/staff-list-post.scss";
+@use "./staff/certificate/donor/staff-list-donor-certificate.scss";
+@use "./staff/certificate/donor/staff-detail-donor-certificate.scss";
+@use "./staff/certificate/recipient/staff-list-recipient-certificate.scss";
+@use "./staff/certificate/recipient/staff-detail-recipient-certificate.scss";
+
+@use "./modal/modal.scss";
+@use "./modal/submit-certificate-modal.scss";
+@use "./modal/personal-donor-modal.scss";
+@use "./modal/organization-donor-modal.scss";
+@use "./modal/reject-certificate-modal.scss";
+@use "./modal/reject-campaign-modal.scss";
+@use "./modal/create-campaign-modal.scss";
+@use "./modal/recipient-certificate-modal.scss";
+@use "./modal/remind-certificate-modal.scss";
+@use "./modal/additional-campaign-modal.scss";
+@use "./modal/additional-certificate-modal.scss";
+@use "./modal/create-post-modal.scss";
+@use "./modal/cancel-campaign-modal.scss";
+@use "./modal/register-receiver-modal.scss";

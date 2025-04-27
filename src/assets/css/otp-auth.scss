@@ -1,0 +1,62 @@
+#otp-auth {
+    #oa-section {
+        .oas-container {
+            display: flex;
+
+            .oascc1 {
+                background-image: url("@/assets/images/bg-left.png");
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: cover;
+                min-height: 100vh;
+            }
+
+            .oascc2 {
+                display: flex;
+                align-items: center;
+
+                .oascc2-main {
+                    max-width: 400px;
+                    margin: 0 auto;
+
+                    h1 {
+                        font-size: 24px;
+                        font-weight: 800;
+                        color: #393939;
+                        margin-bottom: 20px;
+                    }
+
+                    .sc-btn {
+                        width: 100%;
+                        font-size: 17px;
+                        padding: 12px;
+                        margin-top: 20px;
+                        margin-bottom: 30px;
+                    }
+
+                    a {
+                        text-align: end;
+                        text-decoration: none;
+                        font-size: 14px;
+                        font-weight: 600;
+                        color: #F54A00;
+                    }
+
+                    p {
+                        text-align: center;
+                        color: var(--main-black);
+                        font-size: 17px;
+                        font-weight: 500;
+                        margin-bottom: 32px;
+
+                        span {
+                            color: #F54A00;
+                            font-weight: 800;
+                            cursor: pointer;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

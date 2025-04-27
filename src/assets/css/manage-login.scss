@@ -1,0 +1,84 @@
+#manage-login {
+    #ml-section {
+        min-height: 100vh;
+        background-color: var(--main-color);
+        padding: 100px 20px;
+
+        .mls-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            background-color: #fff;
+            border-radius: 12px;
+
+            .sc-btn {
+                font-size: 14px;
+                font-weight: 400;
+                color: #fff;
+                background: var(--main-color);
+                border: none;
+                border-radius: 8px;
+                padding: 11px 20px;
+                cursor: pointer;
+            }
+
+            .mlsc1 {
+                padding: 54px 45px ;
+
+                h1 {
+                    color: var(--main-color);
+                    font-size: 34px;
+                    font-weight: 700;
+                    margin-top: 20px;
+                    margin-bottom: 10px;
+                }
+
+                p {
+                    color: #29343d;
+
+                    a {
+                        color: var(--main-color);
+                    }
+                }
+
+                .mlsc1-logo {
+                    width: 150px;
+                }
+            }
+
+            .mlsc2 {
+                padding: 100px 40px;
+                border-left: 1px solid #e9ecef;
+                text-align: center;
+
+                .mlsc2-img {
+                    width: fit-content;
+                    height: 300px;
+                    margin: 0 auto;
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                    }
+                }
+
+                h2 {
+                    color: #29343d;
+                    font-size: 22px;
+                    font-weight: 700;
+                    margin-top: 20px;
+                    margin-bottom: 20px;
+                }
+
+                p {
+                    max-width: 350px;
+                    color: #526B7A;
+                    margin: 0 auto 20px;
+                    font-size: 15px;
+                    font-weight: 400;
+                }
+            }
+        }
+    }
+}

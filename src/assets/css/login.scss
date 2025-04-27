@@ -1,0 +1,67 @@
+#login {
+    #login-section {
+        .ls-container {
+            display: flex;
+
+            .lscc1 {
+                background-image: url("@/assets/images/bg-left.png");
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: cover;
+                min-height: 100vh;
+            }
+
+            .lscc2 {
+                display: flex;
+                align-items: center;
+
+                .lscc2-main {
+                    width: 70%;
+                    margin: 0 auto;
+
+                    .form {
+                        display: flex;
+                        flex-direction: column;
+                    }
+
+                    h1 {
+                        font-size: 40px;
+                        font-weight: 700;
+                        color: var(--main-color);
+                        margin-bottom: 20px;
+                    }
+
+                    .sc-btn {
+                        width: 200px;
+                        font-size: 17px;
+                        padding: 12px;
+                        margin: 0 auto;
+                        margin-top: 20px;
+                        margin-bottom: 30px;
+                    }
+
+                    a {
+                        text-align: end;
+                        text-decoration: none;
+                        font-size: 14px;
+                        font-weight: 600;
+                        color: #F54A00;
+                    }
+
+                    p {
+                        text-align: center;
+                        color: var(--main-black);
+                        font-size: 17px;
+                        font-weight: 500;
+
+                        span {
+                            color: #F54A00;
+                            font-weight: 700;
+                            cursor: pointer;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
