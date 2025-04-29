@@ -2,7 +2,7 @@ import { CampaignIcon, CertificateIcon, MenuIcon, NewsIcon, NotificationIcon, Po
 import { navigateHook } from "@/routes/RouteApp"
 import { routes } from "@/routes/routeName"
 import { FC, useEffect, useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import { CreateCampaignModal, CreateRequestSupportModal, SubmitCertificateModal } from "../Modal"
 import { useAppDispatch, useAppSelector } from "@/app/store"
 import { selectGetProfileUser, selectIsAuthenticated, selectNotifications, selectUserLogin } from "@/app/selector"
@@ -18,6 +18,7 @@ import 'dayjs/locale/vi';
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
 import { LogoLanding } from "@/assets/images"
+import classNames from 'classnames';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -26,6 +27,7 @@ dayjs.extend(relativeTime);
 
 const HeaderLanding: FC<LandingHeaderProps> = ({ isLogin }) => {
     const dispatch = useAppDispatch();
+    const location = useLocation();
 
     const userLogin = useAppSelector(selectUserLogin)
 
@@ -59,18 +61,20 @@ const HeaderLanding: FC<LandingHeaderProps> = ({ isLogin }) => {
     const [isNotifOpen, setIsNotifOpen] = useState(false);
     const notifications = useAppSelector(selectNotifications)
 
+    console.log(notifications)
+
     const handleNewNotification = (notification: any) => {
         const correctedNotification: NotificationDto = {
             ...notification,
             notificationId: notification.notificationId || notification.id || notification._id,
             objectId: notification.objectId || notification.ojectId,
         };
-        
+
         dispatch(addNotification(correctedNotification));
-    
+
         // 👉 Lưu nội dung cần hiện toast vào localStorage
         localStorage.setItem("pendingToastMessage", correctedNotification.content);
-    
+
         // 👉 Reload trang
         window.location.reload();
     };
@@ -81,8 +85,8 @@ const HeaderLanding: FC<LandingHeaderProps> = ({ isLogin }) => {
             toast.info(`🔔 ${pendingToast}`);
             localStorage.removeItem("pendingToastMessage"); // Xóa để tránh toast lặp lại
         }
-    }, []);    
-    
+    }, []);
+
     useEffect(() => {
         if (!isAuthenticated) return;
 
@@ -175,6 +179,7 @@ const HeaderLanding: FC<LandingHeaderProps> = ({ isLogin }) => {
     const menuItems = [
         {
             name: "Chiến dịch",
+            active: location.pathname === routes.user.campaign.list,
             subMenu: [
                 {
                     title: "Tất cả",
@@ -190,9 +195,10 @@ const HeaderLanding: FC<LandingHeaderProps> = ({ isLogin }) => {
                 }
             ]
         },
-        { name: "Tin tức", subMenu: [{ title: "Tất cả", to: routes.user.news.list }] },
         {
-            name: "Khám phá", subMenu: [
+            name: "Khám phá",
+            active: location.pathname === routes.user.news.list || location.pathname === routes.user.post.forum,
+            subMenu: [
                 {
                     title: "Tin tức",
                     to: routes.user.news.list
@@ -203,12 +209,28 @@ const HeaderLanding: FC<LandingHeaderProps> = ({ isLogin }) => {
                 }
             ]
         },
-        { name: "Giới thiệu", subMenu: ["Về chúng tôi", "Liên hệ"] }
+        {
+            name: "Giới thiệu", subMenu: [
+                {
+                    title: "Về chúng tôi",
+                    to: ""
+                },
+                {
+                    title: "Liên hệ",
+                    to: ""
+                }
+            ]
+        }
     ];
 
-    const handleToDetailCampaign = (campaignId: string) => {
+    const handleToDetailCampaign = (campaignId: string, type: string) => {
+        if(type === "Notification"){
+            const url = routes.user.campaign.detail.replace(":id", campaignId);
+            return navigateHook(url)
+        } else {
         const url = routes.user.detail_campaign.replace(":id", campaignId);
         return navigateHook(url)
+        }
     }
 
     const handleGoToCampaign = (campaignId: string) => {
@@ -247,7 +269,7 @@ const HeaderLanding: FC<LandingHeaderProps> = ({ isLogin }) => {
         <header id="header-landing">
             <div className="hl-container">
                 <div className="hlcc1">
-                    <img src={LogoLanding} onClick={() => navigateHook(routes.user.home)}/>
+                    <img src={LogoLanding} onClick={() => navigateHook(routes.user.home)} />
                 </div>
                 <div className="hlcc2">
                     <ul className="nav-list">
@@ -258,11 +280,22 @@ const HeaderLanding: FC<LandingHeaderProps> = ({ isLogin }) => {
                                 onMouseEnter={() => setHoverIndex(index)}
                                 onMouseLeave={() => setHoverIndex(null)}
                             >
-                                <p className="nav-link">{item.name}</p>
+                                <p
+                                    className={classNames('nav-link', {
+                                        'nav-link-active': item.active === true
+                                    })}
+                                >
+                                    {item.name}
+                                </p>
                                 {hoverIndex === index && item.subMenu.length > 0 && (
                                     <ul className="sub-menu">
                                         {item.subMenu.map((sub, i) => (
-                                            <li key={i} className="sub-item">
+                                            <li
+                                                key={i}
+                                                className={classNames('sub-item', {
+                                                    'sub-item-active': location.pathname === sub.to.split('?')[0]
+                                                })}
+                                            >
                                                 {typeof sub === "string" ? (
                                                     <span>{sub}</span>
                                                 ) : (
@@ -281,7 +314,6 @@ const HeaderLanding: FC<LandingHeaderProps> = ({ isLogin }) => {
                         <>
                             <Link to={routes.login}>Đăng nhập</Link>
                             <Link to={routes.register}>Đăng Ký</Link>
-                            <Link to={routes.admin_login}>Trang quản lý</Link>
                         </>
                     )}
                     {isLogin && (
@@ -344,6 +376,8 @@ const HeaderLanding: FC<LandingHeaderProps> = ({ isLogin }) => {
                                                     if (notif.notificationType === "Pending") actionText = "Có chiến dịch mới được tạo ra.";
                                                     if (notif.notificationType === "Reject") actionText = "Chiến dịch đã bị từ chối.";
                                                     if (notif.notificationType === "Review") actionText = "Chiến dịch đang chờ xem xét.";
+                                                    if (notif.notificationType === "Notification") actionText = "Có một chiến dịch vừa được tạo.";
+                                                    if (notif.notificationType === "Cancel") actionText = "Chiến dịch vừa bị huỷ.";
 
                                                     if (actionText) {
                                                         return (
@@ -352,13 +386,13 @@ const HeaderLanding: FC<LandingHeaderProps> = ({ isLogin }) => {
                                                                 className={`notification-item ${notif.isRead ? "read" : "unread"}`}
                                                                 onClick={() => {
                                                                     markAsRead(notif.notificationId);
-                                                                    handleToDetailCampaign(notif.ojectId || "");
+                                                                    handleToDetailCampaign(notif.ojectId || "", notif.notificationType);
                                                                 }}
                                                             >
                                                                 <CampaignIcon className="notification-icon" />
                                                                 <div>
                                                                     <strong>{notif.content}</strong>
-                                                                    <p>{actionText}</p>
+                                                                    <p>Đi đến chiến dịch</p>
                                                                     <p>
                                                                         {notif?.createdDate
                                                                             ? dayjs.utc(notif.createdDate).tz("Asia/Ho_Chi_Minh").fromNow()
@@ -505,6 +539,7 @@ const HeaderLanding: FC<LandingHeaderProps> = ({ isLogin }) => {
                                                         if (notif.notificationType === "Approve") actionText = "Đơn xác minh danh tính đã được phê duyệt.";
                                                         if (notif.notificationType === "Reject") actionText = "Đơn xác minh danh tính đã bị từ chối.";
                                                         if (notif.notificationType === "Review") actionText = "Đơn xác minh danh tính đang chờ xem xét.";
+                                                        if (notif.notificationType === "Pending") actionText = "Đơn xác minh danh tính cần bổ sung thêm thông tin.";
 
                                                         if (actionText) {
                                                             return (
@@ -519,7 +554,7 @@ const HeaderLanding: FC<LandingHeaderProps> = ({ isLogin }) => {
                                                                     <CertificateIcon className="notification-icon" />
                                                                     <div>
                                                                         <strong>{notif.content}</strong>
-                                                                        <p>{actionText}</p>
+                                                                        <p>Đi đến đơn xác minh</p>
                                                                         <p>
                                                                             {notif?.createdDate
                                                                                 ? dayjs.utc(notif.createdDate).tz("Asia/Ho_Chi_Minh").fromNow()
@@ -536,6 +571,7 @@ const HeaderLanding: FC<LandingHeaderProps> = ({ isLogin }) => {
                                                         if (notif.notificationType === "Approve") actionText = "Đơn xác minh danh tính đã được phê duyệt.";
                                                         if (notif.notificationType === "Reject") actionText = "Đơn xác minh danh tính đã bị từ chối.";
                                                         if (notif.notificationType === "Review") actionText = "Đơn xác minh danh tính đang chờ xem xét.";
+                                                        if (notif.notificationType === "Pending") actionText = "Đơn xác minh danh tính cần bổ sung thêm thông tin.";
 
                                                         if (actionText) {
                                                             return (
@@ -550,7 +586,7 @@ const HeaderLanding: FC<LandingHeaderProps> = ({ isLogin }) => {
                                                                     <CertificateIcon className="notification-icon" />
                                                                     <div>
                                                                         <strong>{notif.content}</strong>
-                                                                        <p>{actionText}</p>
+                                                                        <p>Đi đến đơn xác minh</p>
                                                                         <p>
                                                                             {notif?.createdDate
                                                                                 ? dayjs.utc(notif.createdDate).tz("Asia/Ho_Chi_Minh").fromNow()
@@ -567,6 +603,7 @@ const HeaderLanding: FC<LandingHeaderProps> = ({ isLogin }) => {
                                                         if (notif.notificationType === "Approve") actionText = "Đơn xác minh danh tính đã được phê duyệt.";
                                                         if (notif.notificationType === "Reject") actionText = "Đơn xác minh danh tính đã bị từ chối.";
                                                         if (notif.notificationType === "Review") actionText = "Đơn xác minh danh tính đang chờ xem xét.";
+                                                        if (notif.notificationType === "Pending") actionText = "Đơn xác minh danh tính cần bổ sung thêm thông tin.";
 
                                                         if (actionText) {
                                                             return (
@@ -581,7 +618,7 @@ const HeaderLanding: FC<LandingHeaderProps> = ({ isLogin }) => {
                                                                     <CertificateIcon className="notification-icon" />
                                                                     <div>
                                                                         <strong>{notif.content}</strong>
-                                                                        <p>{actionText}</p>
+                                                                        <p>Đi đến đơn xác minh</p>
                                                                         <p>
                                                                             {notif?.createdDate
                                                                                 ? dayjs.utc(notif.createdDate).tz("Asia/Ho_Chi_Minh").fromNow()

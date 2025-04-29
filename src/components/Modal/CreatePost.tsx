@@ -1,9 +1,8 @@
 import { ChangeEvent, FC, useState } from 'react';
-import { Formik, Field, Form, FormikHelpers } from 'formik';
+import { Formik, Form, FormikHelpers } from 'formik';
 import * as Yup from 'yup';
 import { useAppDispatch, useAppSelector } from '@/app/store';
 import { selectUserLogin } from '@/app/selector';
-import classNames from "classnames";
 import { CreatePostModalProps } from './type';
 import Modal from './Modal';
 import Button from '../Elements/Button';
@@ -11,6 +10,7 @@ import { setLoading } from '@/services/app/appSlice';
 import { approvePostApiThunk, createPostApiThunk, getAllPostsApiThunk, rejectPostApiThunk } from '@/services/post/postThunk';
 import { toast } from 'react-toastify';
 import { get } from 'lodash';
+import { RichTextField } from '../Elements';
 
 const CreatePostModal: FC<CreatePostModalProps> = ({ isOpen, setIsOpen }) => {
     const [imagePreview, setImagePreview] = useState<string[]>([]);
@@ -54,54 +54,54 @@ const CreatePostModal: FC<CreatePostModalProps> = ({ isOpen, setIsOpen }) => {
     };
 
     const handleApprovePost = async (values: ApprovePost) => {
-            try {
-                await dispatch(approvePostApiThunk(values)).unwrap();
-                toast.success("Phê duyệt thành công");
-                dispatch(getAllPostsApiThunk());
-            } catch (error) {
-                toast.error("Có lỗi xảy ra khi phê duyệt bài viết.");
-            }
-        };
-    
-        const handleRejectPost = async (values: RejectPost) => {
-            try {
-                await dispatch(rejectPostApiThunk(values)).unwrap();
-                toast.success("Đã từ chối");
-                dispatch(getAllPostsApiThunk());
-            } catch (error) {
-                toast.error("Có lỗi xảy ra khi từ chối bài viết.");
-            }
-        };
+        try {
+            await dispatch(approvePostApiThunk(values)).unwrap();
+            toast.success("Phê duyệt thành công");
+            dispatch(getAllPostsApiThunk());
+        } catch (error) {
+            toast.error("Có lỗi xảy ra khi phê duyệt bài viết.");
+        }
+    };
 
-        const moderateContentAI = async (content: string): Promise<{ isApproved: boolean; reason?: string }> => {
-            const bannedKeywords = ["cấm", "vi phạm", "chửi", "giết", "xxx"]; // Thêm từ cấm vào đây
-            const lowerContent = content.toLowerCase();
-    
-            // Kiểm tra nếu nội dung chứa từ cấm
-            if (bannedKeywords.some(keyword => lowerContent.includes(keyword))) {
-                return { isApproved: false, reason: "Nội dung chứa từ bị cấm" };
-            }
-    
-            return { isApproved: true }; // Nếu không có từ cấm, phê duyệt bài viết
-        };
+    const handleRejectPost = async (values: RejectPost) => {
+        try {
+            await dispatch(rejectPostApiThunk(values)).unwrap();
+            toast.success("Đã từ chối");
+            dispatch(getAllPostsApiThunk());
+        } catch (error) {
+            toast.error("Có lỗi xảy ra khi từ chối bài viết.");
+        }
+    };
+
+    const moderateContentAI = async (content: string): Promise<{ isApproved: boolean; reason?: string }> => {
+        const bannedKeywords = ["cấm", "vi phạm", "chửi", "giết", "xxx"]; // Thêm từ cấm vào đây
+        const lowerContent = content.toLowerCase();
+
+        // Kiểm tra nếu nội dung chứa từ cấm
+        if (bannedKeywords.some(keyword => lowerContent.includes(keyword))) {
+            return { isApproved: false, reason: "Nội dung chứa từ bị cấm" };
+        }
+
+        return { isApproved: true }; // Nếu không có từ cấm, phê duyệt bài viết
+    };
 
     const onSubmit = async (values: ActionParamPost, helpers: FormikHelpers<ActionParamPost>) => {
         dispatch(setLoading(true));
         try {
             const result = await dispatch(createPostApiThunk(values)).unwrap();
-            
+
             helpers.resetForm();
             setImagePreview([]);
             toast.info("Bài viết của bạn đang chờ được phê duyệt");
-    
+
             const aiResult = await moderateContentAI(String(values.postContent));
-    
+
             if (aiResult.isApproved) {
                 await handleApprovePost({ postId: result.postId }); // Approved nếu nội dung OK
             } else {
                 await handleRejectPost({ postId: result.postId, comment: aiResult.reason || "Nội dung không phù hợp" }); // Reject nếu vi phạm
             }
-    
+
             dispatch(getAllPostsApiThunk());
         } catch (error) {
             const errorData = get(error, "data.message", "An error occurred");
@@ -113,7 +113,6 @@ const CreatePostModal: FC<CreatePostModalProps> = ({ isOpen, setIsOpen }) => {
             setIsOpen(false);
         }
     };
-    
 
     return (
         <Modal isOpen={isOpen} setIsOpen={setIsOpen} title="Tạo bài viết">
@@ -127,13 +126,8 @@ const CreatePostModal: FC<CreatePostModalProps> = ({ isOpen, setIsOpen }) => {
                         {({ setFieldValue, errors, touched, isSubmitting }) => (
                             <Form className="form">
                                 <div className="form-field">
-                                    <label className="form-label">Nhập nội dung bài viết</label>
-                                    <Field
-                                        name="postContent"
-                                        as="textarea"
-                                        placeholder="Nội dung bài viết"
-                                        className={classNames("form-input", { "is-error": errors.postContent && touched.postContent })}
-                                    />
+                                    <label className="form-label" style={{ marginBottom: "8px" }}>Nhập nội dung bài viết</label>
+                                    <RichTextField name="postContent" placeholder="Nội dung bài viết" />
                                     {errors.postContent && touched.postContent && <span className="text-error">{errors.postContent}</span>}
                                 </div>
 
