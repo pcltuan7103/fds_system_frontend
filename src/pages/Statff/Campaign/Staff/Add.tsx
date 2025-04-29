@@ -31,7 +31,7 @@ const StaffAddCampaignStaffPage: FC = () => {
         sponsors: "",
         implementationMethod: "",
         communication: "",
-        limitedQuantity: "",
+        limitedQuantity: 0,
         campaignType: "",
         startRegisterDate: "",
         endRegisterDate: "",
@@ -156,7 +156,7 @@ const StaffAddCampaignStaffPage: FC = () => {
                 ? {
                     startRegisterDate: toUTC(values.startRegisterDate),
                     endRegisterDate: toUTC(values.endRegisterDate),
-                    limitedQuantity: "",
+                    limitedQuantity: 0,
                 }
                 : {
                     startRegisterDate: "",
