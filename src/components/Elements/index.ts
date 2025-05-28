@@ -17,4 +17,29 @@ import CrispChat from "./Crisp";
 import ChatBox from "./ChatBox";
 import UserList from "./UserList";
 import ChatIcon from "./ChatIcon";
-export { OTPInput, Subscriber, Post, SlideToggle, RenderIf, Loading, CarouselLanding, CampaignCarousel, PostImageGallery, FeedbackCampaign, ApprovedPost, PersonalApprovedPost, PersonalRejectedPost, RichTextField, PostContent, CrispChat, ChatBox, UserList,ChatIcon };
+import CampaignComparisonChart from "./CampaignComparisonChart";
+import CommentPost from "./CommentPost";
+
+export {
+    OTPInput,
+    Subscriber,
+    Post,
+    SlideToggle,
+    RenderIf,
+    Loading,
+    CarouselLanding,
+    CampaignCarousel,
+    PostImageGallery,
+    FeedbackCampaign,
+    ApprovedPost,
+    PersonalApprovedPost,
+    PersonalRejectedPost,
+    RichTextField,
+    PostContent,
+    CrispChat,
+    ChatBox,
+    UserList,
+    ChatIcon,
+    CampaignComparisonChart,
+    CommentPost
+};

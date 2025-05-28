@@ -31,6 +31,8 @@ export const routes = {
         detail_certificate: "/user/certificate/:id/detail",
         detail_request_support: "/user/requestSupport/:id/detail",
         participate_request_support: "/user/participateRequestSupport/:id/detail",
+        donate: "/user/donate",
+        return: "/user/return"
     },
     admin: {
         dashboard: "/admin",
@@ -84,7 +86,10 @@ export const routes = {
             detail: "/staff/news/:id/detail",
             update: "/staff/news/:id/update",
         },
-        post: "/staff/post",
+        post: {
+            list: "/staff/post",
+            detail: "/staff/post/:id/detail",
+        },
         certificate: {
             donor: {
                 list: "/staff/certificate/donor",
@@ -98,6 +103,11 @@ export const routes = {
         request_support: {
             list: "/staff/requestSupport",
             detail: "/staff/requestSupport/:id/detail",
+        },
+        chat: "/staff/chat",
+        donate: {
+            list: "/staff/donate",
+            detail: "/staff/donate/:id/detail",
         }
     }
 }

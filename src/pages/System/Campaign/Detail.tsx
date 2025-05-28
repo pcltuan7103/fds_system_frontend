@@ -503,15 +503,7 @@ const DetailCampaignPage: React.FC = () => {
                                 <div>
                                     <h4>Số lượng còn lại</h4>
                                     <p>
-                                        {!isNaN(
-                                            Number(
-                                                currentCampaign?.limitedQuantity
-                                            ) - totalRegisteredQuantity
-                                        )
-                                            ? Number(
-                                                  currentCampaign?.limitedQuantity
-                                              ) - totalRegisteredQuantity
-                                            : "N/A"}
+                                        {Number(currentCampaign?.limitedQuantity) - totalRegisteredQuantity}
                                     </p>
                                 </div>
                                 <div>
@@ -533,7 +525,7 @@ const DetailCampaignPage: React.FC = () => {
                                             Number(
                                                 currentCampaign?.limitedQuantity
                                             ) ? (
-                                                <p className="sc-text">
+                                                <p className="sc-text" style={{ textAlign: "center", padding: "10px 0" }}>
                                                     Đã đăng ký đủ số lượng
                                                 </p>
                                             ) : (

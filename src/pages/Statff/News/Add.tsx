@@ -38,7 +38,6 @@ const StaffAddNewsPage: FC = () => {
 
         images: Yup.array()
             .of(Yup.string().required("Mỗi ảnh phải là một chuỗi hợp lệ"))
-            .min(1, "Cần ít nhất một ảnh")
             .required("Danh sách ảnh là bắt buộc"),
 
         newsDescripttion: Yup.string()
@@ -122,6 +121,7 @@ const StaffAddNewsPage: FC = () => {
                 toast.success("Tạo tin tức thành công");
                 helpers.resetForm();
                 setImagePreview([]);
+                navigateHook(routes.staff.news.list);
             })
             .catch((error) => {
                 const errorData = get(error, "data", null);

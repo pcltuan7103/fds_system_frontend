@@ -42,6 +42,7 @@ interface Post {
     publicDate: string;
     likes: PostLike[];
     comments: PostComment[];
+    hashtags: string[];
 }
 
 interface PostInfo {
@@ -99,4 +100,9 @@ interface PostCommentDto {
     dateUpdated: string | null;
     replies: PostCommentDto[] | null;
     images: string[]; // base64 hoặc URL ảnh
+}
+
+interface LikeComment {
+    postCommentId: string | null;
+    replyPostCommentId: string | null;
 }

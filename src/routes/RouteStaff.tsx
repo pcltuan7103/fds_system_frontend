@@ -5,10 +5,12 @@ import { StaffDetailUserPage, StaffListUserPage } from "@/pages/Statff/User";
 import { StaffAddCampaignStaffPage, StaffDetailCampaignStaffPage, StaffListCampaignStaffPage } from "@/pages/Statff/Campaign/Staff";
 import { StaffDetailCampaignUserPage, StaffListCampaignUserPage } from "@/pages/Statff/Campaign/User";
 import { StaffAddNewsPage, StaffDetailNewsPage, StaffListNewsPage, StaffUpdateNewsPage } from "@/pages/Statff/News";
-import { StaffListPostPage } from "@/pages/Statff/Post";
+import { StaffDetailPostPage, StaffListPostPage } from "@/pages/Statff/Post";
 import { StaffDetailDonorCertificate, StaffListDonorCertificate } from "@/pages/Statff/Certificate/Donor";
 import { StaffDetailCertificateRecipient, StaffListRecipientCertificate } from "@/pages/Statff/Certificate/Recipient";
 import { StaffDetailRequestSupportPage, StaffListRequestSupportPage } from "@/pages/Statff/RequestSupport";
+import { StaffChatWithUserPage } from "@/pages/Statff/Chat";
+import { StaffDetailDonatePage, StaffListDonatePage } from "@/pages/Statff/Donate";
 
 const routeStatff: RouteObject[] = [
     {
@@ -68,6 +70,10 @@ const routeStatff: RouteObject[] = [
                 element: <StaffListPostPage />
             },
             {
+                path: "post/:id/detail",
+                element: <StaffDetailPostPage />
+            },
+            {
                 path: "certificate/donor",
                 element: <StaffListDonorCertificate />
             },
@@ -90,7 +96,19 @@ const routeStatff: RouteObject[] = [
             {
                 path: "requestSupport/:id/detail",
                 element: <StaffDetailRequestSupportPage />
-            }
+            },
+            {
+                path: "chat",
+                element: <StaffChatWithUserPage />
+            },
+            {
+                path: "donate",
+                element: <StaffListDonatePage />
+            },
+            {
+                path: "donate/:id/detail",
+                element: <StaffDetailDonatePage />
+            },
         ],
     },
 ];

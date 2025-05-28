@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from "@/app/store";
 import { RegisterPersonIcon } from "@/assets/icons";
 import { Subscriber } from "@/components/Elements/index";
 import {
+    ListRegisterReceiverModal,
     RegisterReceiverModal,
     RemindCertificateModal,
     UpdateCampaignModal,
@@ -34,6 +35,9 @@ const UserDetailCampaignPage: React.FC = () => {
         useState(false);
 
     const [isUpdateCampaignModalOpend, setIsUpdateCampaignModalOpend] =
+        useState(false);
+    
+    const [isListRegisterReceiverModalOpend, setIsListRegisterReceiverModalOpend] =
         useState(false);
 
     const registerReceivers = useAppSelector(selectGetAllRegisterReceivers);
@@ -135,28 +139,28 @@ const UserDetailCampaignPage: React.FC = () => {
                             </div>
                             <div className="udcscr1c1r1">
                                 <h1>
-                                    {currentCampaign?.campaignName} -
-                                    {currentCampaign?.status === "Pending" ? (
-                                        <span className="status-pending">
+                                    {currentCampaign?.campaignName}
+                                </h1>
+                                {currentCampaign?.status === "Pending" ? (
+                                        <p className="status-pending">
                                             Đang chờ phê duyệt
-                                        </span>
+                                        </p>
                                     ) : currentCampaign?.status ===
                                       "Approved" ? (
-                                        <span className="status-approve">
+                                        <p className="status-approve">
                                             Đã được phê duyệt
-                                        </span>
+                                        </p>
                                     ) : currentCampaign?.status ===
                                       "Rejected" ? (
-                                        <span className="status-reject">
+                                        <p className="status-reject">
                                             Đã bị từ chối
-                                        </span>
+                                        </p>
                                     ) : currentCampaign?.status ===
                                       "Canceled" ? (
-                                        <span className="status-reject">
+                                        <p className="status-reject">
                                             Đã huỷ
-                                        </span>
+                                        </p>
                                     ) : null}
-                                </h1>
                             </div>
                             <div className="udcscr1c1r3">
                                 <div
@@ -180,17 +184,16 @@ const UserDetailCampaignPage: React.FC = () => {
                             </div>
                         </div>
                         <div className="udcscr1c2">
-                            {currentCampaign?.status === "Pending" ||
-                                (currentCampaign?.status === "Approved" && (
-                                    <button
-                                        className="pr-btn"
-                                        onClick={() =>
-                                            setIsUpdateCampaignModalOpend(true)
-                                        }
-                                    >
-                                        Cập nhật
-                                    </button>
-                                ))}
+                            {currentCampaign?.status === "Pending"  && (
+                                <button
+                                    className="pr-btn"
+                                    onClick={() =>
+                                        setIsUpdateCampaignModalOpend(true)
+                                    }
+                                >
+                                    Cập nhật
+                                </button>
+                            )}
                             {currentCampaign?.status === "Approved" && (
                                 <button
                                     className="sc-btn"
@@ -236,6 +239,9 @@ const UserDetailCampaignPage: React.FC = () => {
                             {currentCampaign?.status === "Approved" && (
                                 <div className="udcscr1c2r2">
                                     <h3>Danh sách dăng ký nhận hỗ trợ</h3>
+                                    {currentRegisterReceivers.length > 0 && (
+                                        <p className="view-list" onClick={() => setIsListRegisterReceiverModalOpend(true)}>Xem danh sách</p>
+                                    )}
                                     <div className="udcscr1c2r2-lists">
                                         {currentRegisterReceivers.length > 0 ? (
                                             currentRegisterReceivers.map(
@@ -301,6 +307,12 @@ const UserDetailCampaignPage: React.FC = () => {
                 isOpen={isUpdateCampaignModalOpend}
                 setIsOpen={setIsUpdateCampaignModalOpend}
                 selectedCampaign={currentCampaign}
+            />
+            <ListRegisterReceiverModal
+                isOpen={isListRegisterReceiverModalOpend}
+                setIsOpen={setIsListRegisterReceiverModalOpend}
+                registeredReceiver={currentRegisterReceivers}
+                implementTime={currentCampaign?.implementationTime || ""}
             />
         </main>
     );
