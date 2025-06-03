@@ -9,7 +9,7 @@ export const logout = () => {
 export const logoutManager = () => {
     localStorage.clear();
 
-    window.location.href = routes.admin_login;
+    window.location.href = routes.user.home;
 };
 
 export const formatDater = (date: string) => {
