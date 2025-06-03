@@ -150,8 +150,8 @@ const StaffDetailPostPage = () => {
         dispatch(deletePostApiThunk(String(id)))
             .unwrap()
             .then(() => {
-                navigateHook(routes.staff.news.list);
-                toast.success("Xóa tin tức thành công");
+                navigateHook(routes.staff.post.list);
+                toast.success("Xóa bài đăng thành công thành công");
                 dispatch(getAllPostsApiThunk());
             })
             .catch()
