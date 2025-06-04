@@ -11,7 +11,7 @@ import Button from "../Elements/Button";
 import classNames from "classnames";
 import { setLoading } from "@/services/app/appSlice";
 import { selectUserLogin } from "@/app/selector";
-import { createRequestSupportApiThunk } from "@/services/requestSupport/requestSupportThunk";
+import { createRequestSupportApiThunk, getAllRequestSupportApiThunk } from "@/services/requestSupport/requestSupportThunk";
 import axios from "axios";
 import Lightbox from "react-awesome-lightbox";
 
@@ -93,6 +93,7 @@ const CreateRequestSupportModal: FC<CreateRequestSupportModalProps> = ({
             toast.success("Yêu cầu hỗ trợ thành công");
             dispatch(setLoading(true));
             dispatch(getAllCampaignApiThunk());
+            dispatch(getAllRequestSupportApiThunk());
         } catch (error) {
             const errorData = get(error, "data.message", "An error occurred");
             helpers.setErrors({ fullName: errorData });
