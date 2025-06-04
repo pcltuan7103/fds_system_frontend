@@ -59,7 +59,7 @@ const ListRegisterReceiverModal: FC<ListRegisterReceiverModalProps> = ({
                 <table className="table">
                     <thead className="table-head">
                         <tr className="table-head-row">
-                            <th className="table-head-cell">Họ và tên</th>
+                            <th className="table-head-cell">Tên người dại diện</th>
                             <th className="table-head-cell">
                                 Số lượng đăng ký
                             </th>
@@ -90,9 +90,6 @@ const ListRegisterReceiverModal: FC<ListRegisterReceiverModalProps> = ({
                                     >
                                         <td className="table-body-cell">
                                             {receiver.registerReceiverName}
-                                        </td>
-                                        <td className="table-body-cell">
-                                            {receiver.quantity}
                                         </td>
                                         <td className="table-body-cell">
                                             {receiver.actualQuantity}
