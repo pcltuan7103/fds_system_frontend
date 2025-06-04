@@ -34,7 +34,7 @@
         .ls2cr2r1,
         .ls2cr3r1 {
             display: flex;
-            justify-content: space-between;
+            justify-content: start;
             align-items: center;
             padding: 10px 20px;
             border-radius: var(--border-radius-16);
@@ -46,7 +46,7 @@
         .ls2cr3r2 {
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: start;
             flex-wrap: wrap;
             gap: 24px;
         }

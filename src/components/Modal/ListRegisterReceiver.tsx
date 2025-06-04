@@ -3,6 +3,7 @@ import { ListRegisterReceiverModalProps } from "./type";
 import Modal from "./Modal";
 import { ArrowLeft, ArrowRight } from "@/assets/icons";
 import ConfirmReceiveModal from "./ConfirmReceiveModal";
+import dayjs from "dayjs";
 
 const ListRegisterReceiverModal: FC<ListRegisterReceiverModalProps> = ({
     isOpen,
@@ -13,7 +14,7 @@ const ListRegisterReceiverModal: FC<ListRegisterReceiverModalProps> = ({
     const [searchTerm, setSearchTerm] = useState("");
     const [isModalConfirmOpen, setIsModalConfirmOpen] = useState(false);
     const [selectedReceiver, setSelectedReceiver] = useState<any>(null);
-
+    
     const filteredRegisterReceiver = (registeredReceiver ?? []).filter(
         (donor) => donor.code.toLowerCase().includes(searchTerm.toLowerCase())
     );
@@ -73,13 +74,13 @@ const ListRegisterReceiverModal: FC<ListRegisterReceiverModalProps> = ({
                     <tbody className="table-body">
                         {registeredReceiver &&
                             currentRegisterReceiveresPage.map((receiver) => {
-                                const now = new Date();
-                                const start = new Date(implementTime);
-                                const end = new Date(start);
-                                end.setHours(23, 59, 59, 999);
+                                const now = dayjs();
+                                const start = dayjs(implementTime);
+                                const end = start.endOf("day");
+
                                 const isDisabled =
-                                    now < start ||
-                                    now > end ||
+                                    now.isBefore(start) ||
+                                    now.isAfter(end) ||
                                     receiver.status !== "Pending";
 
                                 return (

@@ -242,13 +242,11 @@ const HeaderLanding: FC<LandingHeaderProps> = ({ isLogin }) => {
         }
     };
 
-    const handleGoToCampaign = (campaignId: string) => {
-        const url = routes.user.campaign.detail.replace(":id", campaignId);
-        return navigateHook(url);
-    };
-
     const handleGoToRequestSupport = (requestSupportId: string) => {
-        const url = routes.user.participate_request_support.replace(":id", requestSupportId);
+        const url = routes.user.participate_request_support.replace(
+            ":id",
+            requestSupportId
+        );
         return navigateHook(url);
     };
 
@@ -556,8 +554,10 @@ const HeaderLanding: FC<LandingHeaderProps> = ({ isLogin }) => {
                                                                             markAsRead(
                                                                                 notif.notificationId
                                                                             );
-                                                                            handleGoToCampaign(
-                                                                                notif.ojectId
+                                                                            handleToDetailCampaign(
+                                                                                notif.ojectId ||
+                                                                                    "",
+                                                                                notif.notificationType
                                                                             );
                                                                         }}
                                                                     >
@@ -632,7 +632,9 @@ const HeaderLanding: FC<LandingHeaderProps> = ({ isLogin }) => {
                                                                                 }
                                                                             </strong>
                                                                             <p>
-                                                                                Xem chi tiết
+                                                                                Xem
+                                                                                chi
+                                                                                tiết
                                                                             </p>
                                                                             <p>
                                                                                 {notif?.createdDate
@@ -1019,17 +1021,38 @@ const HeaderLanding: FC<LandingHeaderProps> = ({ isLogin }) => {
                                 <div className="sub-menu-profile">
                                     <ul>
                                         <li>
-                                            <Link to={routes.user.personal} onClick={() => setIsSubMenuProfileOpen(false)}>
+                                            <Link
+                                                to={routes.user.personal}
+                                                onClick={() =>
+                                                    setIsSubMenuProfileOpen(
+                                                        false
+                                                    )
+                                                }
+                                            >
                                                 Xem trang cá nhân
                                             </Link>
                                         </li>
                                         <li>
-                                            <Link to={routes.user.profile} onClick={() => setIsSubMenuProfileOpen(false)}>
+                                            <Link
+                                                to={routes.user.profile}
+                                                onClick={() =>
+                                                    setIsSubMenuProfileOpen(
+                                                        false
+                                                    )
+                                                }
+                                            >
                                                 Chỉnh sửa thông tin
                                             </Link>
                                         </li>
                                         <li>
-                                            <Link to={routes.user.change_pass} onClick={() => setIsSubMenuProfileOpen(false)}>
+                                            <Link
+                                                to={routes.user.change_pass}
+                                                onClick={() =>
+                                                    setIsSubMenuProfileOpen(
+                                                        false
+                                                    )
+                                                }
+                                            >
                                                 Đổi mật khẩu
                                             </Link>
                                         </li>
