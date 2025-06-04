@@ -14,7 +14,7 @@ const ListRegisterReceiverModal: FC<ListRegisterReceiverModalProps> = ({
     const [searchTerm, setSearchTerm] = useState("");
     const [isModalConfirmOpen, setIsModalConfirmOpen] = useState(false);
     const [selectedReceiver, setSelectedReceiver] = useState<any>(null);
-    
+
     const filteredRegisterReceiver = (registeredReceiver ?? []).filter(
         (donor) => donor.code.toLowerCase().includes(searchTerm.toLowerCase())
     );
@@ -59,7 +59,9 @@ const ListRegisterReceiverModal: FC<ListRegisterReceiverModalProps> = ({
                 <table className="table">
                     <thead className="table-head">
                         <tr className="table-head-row">
-                            <th className="table-head-cell">Tên người dại diện</th>
+                            <th className="table-head-cell">
+                                Tên người dại diện
+                            </th>
                             <th className="table-head-cell">
                                 Số lượng đăng ký
                             </th>
@@ -92,10 +94,10 @@ const ListRegisterReceiverModal: FC<ListRegisterReceiverModalProps> = ({
                                             {receiver.registerReceiverName}
                                         </td>
                                         <td className="table-body-cell">
-                                            {receiver.actualQuantity}
+                                            {receiver.quantity}
                                         </td>
                                         <td className="table-body-cell">
-                                            {receiver.quantity}
+                                            {receiver.actualQuantity}
                                         </td>
                                         <td className="table-body-cell">
                                             {receiver.code}
