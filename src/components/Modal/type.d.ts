@@ -7,6 +7,7 @@ interface ModalProps {
     setIsOpen: (arg: boolean) => void;
     title?: string;
     children: React.ReactNode;
+    disableOutsideClick?: boolean;
 }
 
 interface ModalCommonProps {

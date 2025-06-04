@@ -3,7 +3,7 @@ import { navigateHook } from "../../routes/RouteApp";
 import { routes } from "@/routes/routeName";
 import { ILoginEmail } from "@/types/auth";
 import { useAppDispatch, useAppSelector } from "@/app/store";
-import { selectIsAuthenticated, selectUserLogin } from "@/app/selector";
+import { selectIsAuthenticated } from "@/app/selector";
 import * as Yup from "yup";
 import { useEffect, useState } from "react";
 import { Field, Form, Formik, FormikHelpers } from "formik";
@@ -27,8 +27,6 @@ const LoginPage = () => {
     const [idTokenGoogle, setIdTokenGoogle] = useState<string | null>(null);
     const [phoneNumber, setPhoneNumber] = useState("");
     const [roleId, setRoleId] = useState(3); // default 4 (user)
-    const userLogin = useAppSelector(selectUserLogin);
-    const [isBanModalOpen, setIsBanModalOpen] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
 
     const initialValues: ILoginEmail = {
@@ -45,10 +43,6 @@ const LoginPage = () => {
 
     useEffect(() => {
         document.title = "Đăng nhập";
-
-        if (userLogin?.isBanned === false) {
-            setIsBanModalOpen(true);
-        }
 
         if (isAuthenticated) {
             navigateHook(routes.user.home);
@@ -256,7 +250,11 @@ const LoginPage = () => {
                                                     color: "#888",
                                                 }}
                                             >
-                                                {showPassword ? <EyeIcon /> : <EyeCloseIcon />}
+                                                {showPassword ? (
+                                                    <EyeIcon />
+                                                ) : (
+                                                    <EyeCloseIcon />
+                                                )}
                                             </span>
                                             {errors.password &&
                                                 touched.password && (
@@ -370,20 +368,6 @@ const LoginPage = () => {
                             Hủy
                         </button>
                     </div>
-                </div>
-            </Modal>
-            <Modal isOpen={isBanModalOpen} setIsOpen={setIsBanModalOpen}>
-                <div className="finish-gg-account">
-                    <h2>Tài khoản của bạn đã bị khoá</h2>
-                    <p>Vui lồng liên hệ với chúng tôi để biết thêm chi tiết</p>
-                    <ul className="contact-info">
-                        <li>
-                            <strong>Email:</strong> tuanpcl7103@gmail.com
-                        </li>
-                        <li>
-                            <strong>Số điện thoại:</strong> 0898 530 964
-                        </li>
-                    </ul>
                 </div>
             </Modal>
         </main>

@@ -12,6 +12,12 @@ export const logoutManager = () => {
     window.location.href = routes.user.home;
 };
 
+export const logoutToLogin = () => {
+    localStorage.clear();
+
+    window.location.href = routes.login;
+};
+
 export const formatDater = (date: string) => {
     const newDate = new Date(date);
     const day = newDate.getDate();
