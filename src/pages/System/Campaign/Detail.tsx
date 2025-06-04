@@ -517,6 +517,8 @@ const DetailCampaignPage: React.FC = () => {
                             </div>
                             <div className="dcscr1c2r1">
                                 <div>
+                                    <h4>Số lượng đã đăng ký</h4>
+                                    <p>{totalRegisteredQuantity}</p>
                                     <h4>Số lượng còn lại</h4>
                                     <p>
                                         {Number(
@@ -586,7 +588,6 @@ const DetailCampaignPage: React.FC = () => {
                             </div>
                             <div className="dcscr1c2r2">
                                 <h3>Danh sách dăng ký nhận thực phẩm</h3>
-                                <p>{totalRegisteredQuantity}</p>
                                 <div className="dcscr1c2r2-lists">
                                     {currentRegisterReceivers.length > 0 ? (
                                         currentRegisterReceivers.map(

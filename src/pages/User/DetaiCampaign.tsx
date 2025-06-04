@@ -206,6 +206,8 @@ const UserDetailCampaignPage: React.FC = () => {
                             )}
                             <div className="udcscr1c2r1">
                                 <div>
+                                    <h4>Số lượng đã đăng ký</h4>p{" "}
+                                    <p>{totalRegisteredQuantity}</p>
                                     <h4>Số lượng còn lại</h4>
                                     <p>
                                         {!isNaN(
@@ -234,7 +236,6 @@ const UserDetailCampaignPage: React.FC = () => {
                             {currentCampaign?.status === "Approved" && (
                                 <div className="udcscr1c2r2">
                                     <h3>Danh sách dăng ký nhận hỗ trợ</h3>
-                                    <p>{totalRegisteredQuantity}</p>
                                     {currentRegisterReceivers.length > 0 && (
                                         <p
                                             className="view-list"
