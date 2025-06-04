@@ -43,8 +43,6 @@ const StaffDetailPostPage = () => {
     const post = posts.find((post) => post.postId === id);
     const userLogin = useAppSelector(selectUserLogin);
 
-    console.log(post);
-
     useEffect(() => {
         dispatch(setLoading(true));
         Promise.all([dispatch(getAllPostsApiThunk()).unwrap()])

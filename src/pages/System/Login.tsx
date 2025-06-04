@@ -18,7 +18,7 @@ import {
     setUserLogin,
 } from "@/services/auth/authSlice";
 import { Modal } from "@/components/Modal";
-import { RightIcon } from "@/assets/icons";
+import { EyeCloseIcon, EyeIcon, RightIcon } from "@/assets/icons";
 
 const LoginPage = () => {
     const dispatch = useAppDispatch();
@@ -29,6 +29,7 @@ const LoginPage = () => {
     const [roleId, setRoleId] = useState(3); // default 4 (user)
     const userLogin = useAppSelector(selectUserLogin);
     const [isBanModalOpen, setIsBanModalOpen] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
 
     const initialValues: ILoginEmail = {
         userEmail: "",
@@ -214,13 +215,20 @@ const LoginPage = () => {
                                                 )}
                                         </div>
 
-                                        <div className="form-field">
+                                        <div
+                                            className="form-field"
+                                            style={{ position: "relative" }}
+                                        >
                                             <label className="form-label">
                                                 Mật khẩu <span>*</span>
                                             </label>
                                             <Field
                                                 name="password"
-                                                type="password"
+                                                type={
+                                                    showPassword
+                                                        ? "text"
+                                                        : "password"
+                                                }
                                                 placeholder="Hãy nhập mật khẩu của bạn"
                                                 className={classNames(
                                                     "form-input",
@@ -231,6 +239,25 @@ const LoginPage = () => {
                                                     }
                                                 )}
                                             />
+                                            <span
+                                                className="toggle-password"
+                                                onClick={() =>
+                                                    setShowPassword(
+                                                        !showPassword
+                                                    )
+                                                }
+                                                style={{
+                                                    position: "absolute",
+                                                    right: "16px",
+                                                    top: "47px",
+                                                    cursor: "pointer",
+                                                    fontSize: "14px",
+                                                    userSelect: "none",
+                                                    color: "#888",
+                                                }}
+                                            >
+                                                {showPassword ? <EyeIcon /> : <EyeCloseIcon />}
+                                            </span>
                                             {errors.password &&
                                                 touched.password && (
                                                     <span className="text-error">

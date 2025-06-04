@@ -57,3 +57,9 @@ export type UserProfile = {
     type?: string | null;
     isBanned?: boolean | null;
 };
+
+interface IChangePassword {
+    oldPassword: string;
+    newPassword: string;
+    confirmPassword: string;
+}

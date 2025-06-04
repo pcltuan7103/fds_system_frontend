@@ -25,8 +25,6 @@ const ParticipateRequestSupport = () => {
         (item) => item.donorId === useLogin?.accountId
     )?.status;
 
-    console.log(status);
-
     useEffect(() => {
         dispatch(setLoading(true));
         dispatch(getRequestSupportByIdApiThunk(String(id)))

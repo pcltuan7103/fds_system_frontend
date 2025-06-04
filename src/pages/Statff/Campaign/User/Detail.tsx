@@ -37,7 +37,6 @@ const StaffDetailCampaignUserPage: FC = () => {
     const dispatch = useAppDispatch();
 
     const currentCampaign = useAppSelector(selectCurrentCampaign);
-    console.log(currentCampaign)
 
     const registerReceivers = useAppSelector(selectGetAllRegisterReceivers);
 
