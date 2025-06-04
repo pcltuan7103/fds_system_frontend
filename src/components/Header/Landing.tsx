@@ -247,6 +247,11 @@ const HeaderLanding: FC<LandingHeaderProps> = ({ isLogin }) => {
         return navigateHook(url);
     };
 
+    const handleGoToRequestSupport = (requestSupportId: string) => {
+        const url = routes.user.participate_request_support.replace(":id", requestSupportId);
+        return navigateHook(url);
+    };
+
     const handleToDetailCertificate = (
         certificateId?: string,
         type?: string
@@ -505,6 +510,20 @@ const HeaderLanding: FC<LandingHeaderProps> = ({ isLogin }) => {
                                                     </span>
                                                 )}
                                             </div>
+                                            <div
+                                                className={`nd-tabs-item ${
+                                                    notificationTab === "yeucau"
+                                                        ? "nd-tabs-item-actived"
+                                                        : ""
+                                                }`}
+                                                onClick={() => {
+                                                    setNotificationTab(
+                                                        "yeucau"
+                                                    );
+                                                }}
+                                            >
+                                                Yêu cầu hỗ trợ
+                                            </div>
                                         </div>
                                         {notifications.length > 0 ? (
                                             notifications.map((notif) => {
@@ -553,6 +572,67 @@ const HeaderLanding: FC<LandingHeaderProps> = ({ isLogin }) => {
                                                                                 {
                                                                                     actionText
                                                                                 }
+                                                                            </p>
+                                                                            <p>
+                                                                                {notif?.createdDate
+                                                                                    ? dayjs
+                                                                                          .utc(
+                                                                                              notif.createdDate
+                                                                                          )
+                                                                                          .tz(
+                                                                                              "Asia/Ho_Chi_Minh"
+                                                                                          )
+                                                                                          .fromNow()
+                                                                                    : ""}
+                                                                            </p>
+                                                                        </div>
+                                                                    </div>
+                                                                );
+                                                            }
+                                                        }
+                                                        return null;
+                                                    case "Yêu cầu hỗ trợ":
+                                                        if (
+                                                            notificationTab ===
+                                                            "yeucau"
+                                                        ) {
+                                                            let actionText = "";
+                                                            if (
+                                                                notif.notificationType ===
+                                                                "Gửi yêu cầu"
+                                                            )
+                                                                actionText =
+                                                                    "Có yêu cầu hỗ trợ đã được gửi đến bạn.";
+
+                                                            if (actionText) {
+                                                                return (
+                                                                    <div
+                                                                        key={
+                                                                            notif.notificationId
+                                                                        }
+                                                                        className={`notification-item ${
+                                                                            notif.isRead
+                                                                                ? "read"
+                                                                                : "unread"
+                                                                        }`}
+                                                                        onClick={() => {
+                                                                            markAsRead(
+                                                                                notif.notificationId
+                                                                            );
+                                                                            handleGoToRequestSupport(
+                                                                                notif.ojectId
+                                                                            );
+                                                                        }}
+                                                                    >
+                                                                        <PostIcon className="notification-icon" />
+                                                                        <div>
+                                                                            <strong>
+                                                                                {
+                                                                                    actionText
+                                                                                }
+                                                                            </strong>
+                                                                            <p>
+                                                                                Xem chi tiết
                                                                             </p>
                                                                             <p>
                                                                                 {notif?.createdDate
@@ -939,17 +1019,17 @@ const HeaderLanding: FC<LandingHeaderProps> = ({ isLogin }) => {
                                 <div className="sub-menu-profile">
                                     <ul>
                                         <li>
-                                            <Link to={routes.user.personal}>
+                                            <Link to={routes.user.personal} onClick={() => setIsSubMenuProfileOpen(false)}>
                                                 Xem trang cá nhân
                                             </Link>
                                         </li>
                                         <li>
-                                            <Link to={routes.user.profile}>
+                                            <Link to={routes.user.profile} onClick={() => setIsSubMenuProfileOpen(false)}>
                                                 Chỉnh sửa thông tin
                                             </Link>
                                         </li>
                                         <li>
-                                            <Link to={routes.user.change_pass}>
+                                            <Link to={routes.user.change_pass} onClick={() => setIsSubMenuProfileOpen(false)}>
                                                 Đổi mật khẩu
                                             </Link>
                                         </li>

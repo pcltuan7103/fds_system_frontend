@@ -1,4 +1,5 @@
 import { CurrentCampaign } from "@/types/campaign";
+import { AdditionalCampaignRequestSupport, CampaignRequestSupport, RejectCampaignRequestSupport } from "@/types/campaignRequestSupport";
 import { currentOrganizationDonorCertificate, currentPersonalDonorCertificate, currentRecipientCertificate, RejectCertificate, ReviewCertificate } from "@/types/user";
 
 interface ModalProps {
@@ -25,12 +26,24 @@ interface RejectCertificateModalProps extends ModalCommonProps {
 
 interface CreateCampaignModalProps extends ModalCommonProps {}
 
+interface CreateCampaignRequestSupportModalProps extends ModalCommonProps {
+    requestSupport: RequestSupportInfo | null;
+}
+
 interface UpdateCampaignModalProps extends ModalCommonProps {
     selectedCampaign?: CurrentCampaign | null;
 }
 
+interface UpdateCampaignRequestSupportModalProps extends ModalCommonProps {
+    selectedCampaignRequestSupport?: CampaignRequestSupport | null;
+}
+
 interface RejectCampaignModalProps extends ModalCommonProps {
     selectedCampaign?: RejectCampaign | null;
+}
+
+interface RejectCampaignRequestSupportModalProps extends ModalCommonProps {
+    selectedCampaignRequestSupport?: RejectCampaignRequestSupport | null;
 }
 
 interface RejectReasonModalProps extends ModalCommonProps {
@@ -48,6 +61,10 @@ interface RegisterReceiverModalProps extends ModalCommonProps {
 
 interface AdditionalCampaignModalProps extends ModalCommonProps {
     selectedCampaign?: AdditionalCampaign | null;
+}
+
+interface AdditionalCampaignRequestSupportModalProps extends ModalCommonProps {
+    selectedCampaignRequestSupport?: AdditionalCampaignRequestSupport | null;
 }
 
 interface CancelCampaignModalProps extends ModalCommonProps {

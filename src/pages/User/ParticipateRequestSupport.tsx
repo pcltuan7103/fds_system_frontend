@@ -1,6 +1,8 @@
 import { selectGetRequestSupportById, selectUserLogin } from "@/app/selector";
 import { useAppDispatch, useAppSelector } from "@/app/store";
-import { CreateCampaignModal } from "@/components/Modal";
+import {
+    CreateCampaignRequestSupportModal,
+} from "@/components/Modal";
 import { setLoading } from "@/services/app/appSlice";
 import {
     getRequestSupportByIdApiThunk,
@@ -37,27 +39,6 @@ const ParticipateRequestSupport = () => {
                 }, 1000);
             });
     }, [dispatch, id]);
-
-    // const handleParticipateRequestSupport = async () => {
-    //     dispatch(setLoading(true));
-    //     await dispatch(
-    //         participateRequestSupportApiThunk({
-    //             requestSupportId: String(id),
-    //             donorId: String(useLogin?.accountId),
-    //             params: "Participating",
-    //         })
-    //     )
-    //         .unwrap()
-    //         .then(() => {
-    //             dispatch(getRequestSupportByIdApiThunk(String(id)));
-    //         })
-    //         .catch()
-    //         .finally(() => {
-    //             setTimeout(() => {
-    //                 dispatch(setLoading(false));
-    //             }, 1000);
-    //         });
-    // };
 
     const handleNotParticipateRequestSupport = async () => {
         dispatch(setLoading(true));
@@ -188,9 +169,10 @@ const ParticipateRequestSupport = () => {
                     </div>
                 </div>
             </div>
-            <CreateCampaignModal
+            <CreateCampaignRequestSupportModal
                 isOpen={isCreateCampaignModalOpen}
                 setIsOpen={setIsCreateCampaignModalOpen}
+                requestSupport={currentRequestSupport}
             />
         </section>
     );

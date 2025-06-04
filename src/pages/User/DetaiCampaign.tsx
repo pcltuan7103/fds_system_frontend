@@ -265,7 +265,7 @@ const UserDetailCampaignPage: React.FC = () => {
                                     </div>
                                 </div>
                             )}
-                            {currentCampaign?.status === "Pending" && (
+                            {currentCampaign?.status === "Pending" && currentCampaign.reviewComments && currentCampaign.reviewComments?.length > 0 && (
                                 <>
                                     <div className="sdcucr2r5">
                                         <h3>Cần bổ sung các thông tin sau:</h3>
