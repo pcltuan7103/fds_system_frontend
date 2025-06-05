@@ -206,7 +206,7 @@ const UserDetailCampaignPage: React.FC = () => {
                             )}
                             <div className="udcscr1c2r1">
                                 <div>
-                                    <h4>Số lượng đã đăng ký</h4>p{" "}
+                                    <h4>Số lượng đã đăng ký</h4>
                                     <p>{totalRegisteredQuantity}</p>
                                     <h4>Số lượng còn lại</h4>
                                     <p>
